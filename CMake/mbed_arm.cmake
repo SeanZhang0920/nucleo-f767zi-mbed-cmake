@@ -161,8 +161,10 @@ set(CMAKE_CXX_FLAGS_MINSIZEREL "${MBED_COMMON_FLAGS_REL_STR} -fno-rtti")
 set(CMAKE_CXX_FLAGS_DEBUG "${MBED_COMMON_FLAGS_DBG_STR} -fno-rtti")
 set(CMAKE_EXE_LINKER_FLAGS ${MBED_COMMON_LINKER_STR})
 
-# source files and headers are added into the directories
+
+# source files & headers added into directories
 # NOTE: The order of these directories matters. 
+
 set(MBED_SOURCE_DIRS
     "${MBED_PATH}/targets/TARGET_${MBED_VENDOR}/TARGET_${MBED_FAMILY}/TARGET_${MBED_CPU}/TARGET_${MBED_TARGET}"
     "${MBED_PATH}/targets/TARGET_${MBED_VENDOR}/TARGET_${MBED_FAMILY}/TARGET_${MBED_CPU}/device/${TOOLCHAIN}"
@@ -245,6 +247,7 @@ foreach(dir ${MBED_SOURCE_DIRS})
     glob_files(MBED_HEADER_FILES ${dir} "*.h")
 endforeach()
 
+list(REMOVE_ITEM MBED_HEADER_FILES "${MBED_PATH}/targets/TARGET_${MBED_VENDOR}/TARGET_${MBED_FAMILY}/TARGET_${MBED_CPU}/TARGET_${MBED_TARGET}/system_clock.c")
 
 # print debugging information
 if (${MBED_CMAKE_DEBUG})
@@ -277,8 +280,10 @@ if (${MBED_CMAKE_DEBUG})
     endforeach()
 endif()
 
+add_library(azure-iot-c-sdk STATIC "azure-iot-c-sdk.a")
 add_library(mbed-os STATIC ${MBED_SOURCE_FILES} ${MBED_HEADER_FILES})
 target_include_directories(mbed-os PUBLIC ${MBED_SOURCE_DIRS})
+
 
 # mbed_executable(<name> [SOURCES ...] [INCLUDE_DIRS ...] [LIBS ...])
 macro(mbed_executable name)
@@ -289,6 +294,7 @@ macro(mbed_executable name)
     add_executable(${name} ${MBED_EXECUTABLE_SOURCES})
     target_include_directories(${name} PRIVATE ${MBED_SOURCE_DIRS} ${MBED_EXECUTABLE_INCLUDE_DIRS})
     target_link_libraries(${name} mbed-os ${MBED_EXECUTABLE_LIBS} ${MBED_LIBS})
+    target_link_libraries(${name} azure-iot-c-sdk "C:/Users/t-xinz/IoT/CSDKCopy/azure-iot-c-sdk.a")
 
     if (${MBED_MAKE_UPLOAD_TARGETS})
         # Upload to device
