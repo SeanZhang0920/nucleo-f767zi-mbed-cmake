@@ -1,1 +1,1 @@
-"# nucleo-f767zi-mbed-cmake" 
+cmake for mbed supporting NUCLEO_F767ZI
