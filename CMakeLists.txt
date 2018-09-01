@@ -10,7 +10,10 @@ project(mbed-tests C CXX ASM)
 # Start mbed configuration
 include("CMake/mbed_config.cmake")
 
-# Finally, set up the project to use mbed_os
+# Set up the project to use mbed_os
 include("CMake/mbed_arm.cmake")
+
+# set azure-iot-c-sdk lib
+link_libraries("azure-iot-c-sdk.a")
 
 mbed_executable(test SOURCES main.cpp)
