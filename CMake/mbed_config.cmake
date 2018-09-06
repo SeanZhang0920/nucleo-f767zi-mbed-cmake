@@ -3,11 +3,13 @@
 # ---------------------------------------------------
 #
 # Set this variable to the mbed-os build directory
-SET(MBED_PATH "" CACHE PATH "Path to mbed-os.")
+SET(MBED_PATH "C:/Users/t-xinz/IoT/CSDK/mbed-os" CACHE PATH "Path to mbed-os.")
 
 # Set this variable to target your development board
 # Currently supported:
+#  
 #   NUCLEO_F767ZI
+#
 set(MBED_TARGET "NUCLEO_F767ZI" CACHE STRING "Target board name")
 
 # OPTIONAL

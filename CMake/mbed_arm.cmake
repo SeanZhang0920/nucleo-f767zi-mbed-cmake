@@ -280,6 +280,7 @@ if (${MBED_CMAKE_DEBUG})
     endforeach()
 endif()
 
+add_library(azure-iot-c-sdk STATIC "azure-iot-c-sdk.a")
 add_library(mbed-os STATIC ${MBED_SOURCE_FILES} ${MBED_HEADER_FILES})
 target_include_directories(mbed-os PUBLIC ${MBED_SOURCE_DIRS})
 
@@ -293,7 +294,7 @@ macro(mbed_executable name)
     add_executable(${name} ${MBED_EXECUTABLE_SOURCES})
     target_include_directories(${name} PRIVATE ${MBED_SOURCE_DIRS} ${MBED_EXECUTABLE_INCLUDE_DIRS})
     target_link_libraries(${name} mbed-os ${MBED_EXECUTABLE_LIBS} ${MBED_LIBS})
-    target_link_libraries(${name} azure-iot-c-sdk.a "Full path to azure-iot-c-sdk.a")
+    target_link_libraries(${name} azure-iot-c-sdk "C:/Users/t-xinz/IoT/CSDKCopy/azure-iot-c-sdk.a")
 
     if (${MBED_MAKE_UPLOAD_TARGETS})
         # Upload to device
