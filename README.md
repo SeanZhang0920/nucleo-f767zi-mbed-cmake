@@ -17,11 +17,11 @@ Setup Steps:
 #endif
 
 and change the original code:
-MEMORY
-{ 
-  FLASH (rx) : ORIGIN = MBED_APP_START, LENGTH = MBED_APP_SIZE
-  RAM (rwx)  : ORIGIN = 0x200001F8, LENGTH = 512K - 0x1F8
-}
+-MEMORY
+-{ 
+-  FLASH (rx) : ORIGIN = MBED_APP_START, LENGTH = MBED_APP_SIZE
+-  RAM (rwx)  : ORIGIN = 0x200001F8, LENGTH = 512K - 0x1F8
+-}
 
 to:
 MEMORY
